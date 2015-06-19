@@ -251,6 +251,7 @@ class SmsManager
             $this->curlConfig[CURLOPT_POSTFIELDS]['recipient'] = $recipient;
             curl_setopt_array($this->curl, $this->curlConfig);
             $this->response[$recipient] = simplexml_load_string(curl_exec($this->curl));
+            $this->http_status_code = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
         }
 
         return $this->response;
